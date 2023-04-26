@@ -1,0 +1,29 @@
+{
+  "name": "@umajs/utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "compiled"
+  ],
+  "scripts": {
+    "build": "uma-scripts father build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "pirates": "^4.0.5"
+  },
+  "compiledConfig": {
+    "deps": [
+      "pirates"
+    ],
+    "externals": {
+      "pirates": "$$LOCAL"
+    }
+  }
+}
