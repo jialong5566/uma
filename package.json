@@ -1,21 +1,15 @@
 {
-  "name": "uma",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "uma-scripts turbo build",
-    "test": "abc"
+    "test": "uma"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.15.11",
     "father": "^4.1.7",
     "turbo": "^1.9.0",
-    "uma-scripts": "workspace:*"
+    "uma-scripts": "workspace:*",
+    "uma": "workspace:*"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",

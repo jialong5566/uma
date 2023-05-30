@@ -2,7 +2,7 @@ import {existsSync, lstatSync, readdirSync, statSync } from "fs";
 import {extname, relative, resolve } from "path";
 import { defineRoutes } from "./defineRoutes";
 import {byLongestFirst, createRouteId, findParentRouteId, isRouteModuleFile} from "./utils";
-import { winPath } from "@umajs/utils";
+import {winPath} from "@umajs/utils";
 
 
 export function getConventionRoutes(opts: {

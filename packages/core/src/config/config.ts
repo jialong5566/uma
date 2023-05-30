@@ -2,9 +2,12 @@ import {Env} from "../types";
 import {DEFAULT_CONFIG_FILES, LOCAL_EXT, SHORT_ENV} from "../constants";
 import { join } from "path";
 import { existsSync } from "fs";
-import { lodash, register } from "@umajs/utils";
 import esbuild from "esbuild";
 import {addExt, getAbsFiles} from "./util";
+import {lodash, register} from "@umajs/utils";
+
+
+type ISchema = Record<string, any>;
 
 interface IOpts {
   cwd: string;
@@ -38,6 +41,17 @@ export class Config {
     }
     return mainConfigFile;
   }
+
+  getConfig(opts: { schemas: ISchema }) {
+    const { config, files } = this.getUserConfig();
+    console.log(opts)
+    this.files = files;
+    return (this.prevConfig = {
+      config: config,
+      files,
+    });
+  }
+
 
   static getConfigFiles(opts: {
     mainConfigFile: string | null;

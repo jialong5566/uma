@@ -1,5 +1,5 @@
 import { extname } from "path";
-import { winPath } from "@umajs/utils";
+import {winPath} from "@umajs/utils";
 
 export function findParentRouteId(
     routeIds: string[],

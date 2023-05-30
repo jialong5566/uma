@@ -25,5 +25,8 @@
     "externals": {
       "pirates": "$$LOCAL"
     }
+  },
+  "dependencies": {
+    "pino": "^8.11.0"
   }
 }

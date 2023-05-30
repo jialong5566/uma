@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "@umajs/utils": "workspace:*",
+    "@umajs/bundler-utils": "workspace:*",
     "esbuild": "^0.17.18"
   }
 }
