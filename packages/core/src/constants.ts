@@ -8,4 +8,4 @@ export const SHORT_ENV = {
 
 export const LOCAL_EXT = '.local';
 
-export const DEFAULT_FRAMEWORK_NAME = 'umi';
+export const DEFAULT_FRAMEWORK_NAME = 'uma';

@@ -4,11 +4,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["*"],
-      "@@/*": [".umi/*"],
+      "@@/*": [".uma/*"],
       "test-utils": ["test/lib/testUtils"],
-      "umi": ["./packages/umi"],
-      "@umijs/utils": ["./packages/utils"],
-      "@umijs/renderer-react": ["./packages/renderer-react"]
+      "uma": ["./packages/uma"],
+      "@umajs/utils": ["./packages/utils"],
+      "@umajs/renderer-react": ["./packages/renderer-react"]
     }
   }
 }

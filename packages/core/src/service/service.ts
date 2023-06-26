@@ -16,7 +16,6 @@ import { getPaths } from "./getPaths";
 import { Plugin } from './plugin';
 import {noopStorage, Telemetry} from "./telemetry";
 import {PluginAPI} from "./pluginAPI";
-import {chalk, lodash} from "@umajs/utils";
 import { Command } from './command';
 import {Hook} from "./hook";
 
@@ -25,6 +24,9 @@ import type { BuildResult } from '@umajs/bundler-utils/compiled/esbuild';
 import {
   AsyncSeriesWaterfallHook, SyncWaterfallHook,
 } from '@umajs/bundler-utils/compiled/tapable';
+import {chalk, lodash} from "@umajs/utils";
+import { Generator } from './generator';
+
 
 type DeclareKind = 'value' | 'type';
 type SimpleImportSpecifier =
@@ -259,7 +261,6 @@ export class Service {
 
   async resolveConfig() {
     const resolveMode = this.commands[this.name].configResolveMode;
-    // todo applyPlugins 方法
     const config = await this.applyPlugins({
       key: 'modifyConfig',
       // why clone deep?
@@ -504,8 +505,8 @@ export class Service {
         plugins: presetPlugins,
       });
     }
+    plugins.unshift(...presetPlugins);
     this.stage = ServiceStage.initPlugins;
-
     while (plugins.length) {
       await this.initPlugin({ plugin: plugins.shift()!, plugins });
     }

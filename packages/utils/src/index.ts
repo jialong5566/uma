@@ -35,8 +35,16 @@ export * from './zod/isZodSchema';
 export * from './setNoDeprecation';
 import * as printHelp from './printHelp';
 export * from './importLazy';
+import generateFile from './BaseGenerator/generateFile';
+import updatePackageJSON from './updatePackageJSON';
+import installDeps from './installDeps';
+import { isTypeScriptFile } from "./utils/isTypeScriptFile";
 
 export {
+    isTypeScriptFile,
+    installDeps,
+    updatePackageJSON,
+    generateFile,
     tsconfigPaths,
     stripAnsi,
     prompts,

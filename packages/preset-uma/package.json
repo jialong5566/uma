@@ -1,0 +1,19 @@
+{
+  "name": "@umajs/preset-uma",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "uma-scripts father build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@umajs/bundler-utils": "workspace:*",
+    "@umajs/utils": "workspace:*",
+    "@umajs/core": "workspace:*",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-router": "6.3.0",
+    "react-router-dom": "6.3.0"
+  }
+}

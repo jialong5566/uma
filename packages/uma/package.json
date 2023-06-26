@@ -1,0 +1,23 @@
+{
+  "name": "uma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "bin": {
+    "uma": "bin/uma.js"
+  },
+  "scripts": {
+    "build": "uma-scripts father build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@umajs/bundler-utils": "workspace:*",
+    "@umajs/core": "workspace:*",
+    "@umajs/utils": "workspace:*",
+    "@umajs/preset-uma": "workspace:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -223,6 +223,9 @@ importers:
       '@umajs/core':
         specifier: workspace:*
         version: link:../core
+      '@umajs/preset-uma':
+        specifier: workspace:*
+        version: link:../preset-uma
       '@umajs/utils':
         specifier: workspace:*
         version: link:../utils
