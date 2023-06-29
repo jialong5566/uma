@@ -1,0 +1,26 @@
+{
+  "name": "create-uma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "create-uma": "bin/create-uma.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "uma-scripts father build",
+    "build:deps": "uma-scripts bundleDeps",
+    "dev": "uma-scripts father dev",
+    "test": "uma-scripts jest-turbo"
+  },
+  "dependencies": {
+    "@umajs/utils": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

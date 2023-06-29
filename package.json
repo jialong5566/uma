@@ -2,13 +2,14 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "uma-scripts turbo build",
-    "v": "uma help g"
+    "v": "create-uma"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "father": "^4.1.7",
     "turbo": "^1.9.0",
     "uma-scripts": "workspace:*",
+    "create-uma": "workspace:*",
     "uma": "workspace:*"
   },
   "dependencies": {

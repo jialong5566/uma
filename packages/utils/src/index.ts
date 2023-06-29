@@ -28,19 +28,27 @@ import * as tsconfigPaths from '../compiled/tsconfig-paths';
 import yParser from '../compiled/yargs-parser';
 import { z } from '../compiled/zod';
 import * as logger from "./logger";
-
-export * as register from './register';
-export * from "./winPath";
-export * from './zod/isZodSchema';
-export * from './setNoDeprecation';
 import * as printHelp from './printHelp';
-export * from './importLazy';
+import BaseGenerator from './BaseGenerator/BaseGenerator';
 import generateFile from './BaseGenerator/generateFile';
 import updatePackageJSON from './updatePackageJSON';
 import installDeps from './installDeps';
 import { isTypeScriptFile } from "./utils/isTypeScriptFile";
+import getGitInfo from './getGitInfo';
+
+export * from './npmClient';
+export * as register from './register';
+export * from "./winPath";
+export * from './zod/isZodSchema';
+export * from './setNoDeprecation';
+export * from './importLazy';
+export * from './isLocalDev';
+export * from './tryPaths';
+
 
 export {
+    BaseGenerator,
+    getGitInfo,
     isTypeScriptFile,
     installDeps,
     updatePackageJSON,
