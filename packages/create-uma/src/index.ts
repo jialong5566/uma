@@ -56,7 +56,6 @@ enum ENpmClient {
 enum ETemplate {
   app = 'app',
   max = 'max',
-  vueApp = 'vue-app',
   plugin = 'plugin',
 }
 
@@ -66,9 +65,9 @@ export interface IDefaultData extends ITemplateParams {
 
 const pkg = require('../package');
 const DEFAULT_DATA = {
-  pluginName: 'umi-plugin-demo',
+  pluginName: 'uma-plugin-demo',
   email: 'i@domain.com',
-  author: 'umijs',
+  author: 'umajs',
   version: pkg.version,
   npmClient: ENpmClient.pnpm,
   registry: ERegistry.npm,
@@ -115,7 +114,6 @@ export default async ({
           value: ETemplate.max,
           hint: 'more plugins and ready to use features',
         },
-        { label: 'Vue Simple App', value: ETemplate.vueApp },
         {
           label: 'Uma Plugin',
           value: ETemplate.plugin,

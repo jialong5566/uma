@@ -36,21 +36,21 @@ export const unpackTemplate = async (opts: IUnpackTemplateOpts) => {
 
   const nameList: string[] = [];
 
-  const isStartWithUmi = template.startsWith('@umijs/');
+  const isStartWithUma = template.startsWith('@umajs/');
   if (template.endsWith('-template')) {
     // @umijs/electron-template
-    if (isStartWithUmi) {
+    if (isStartWithUma) {
       nameList.push(template);
     } else {
       // electron-template
-      nameList.push(`@umijs/${template}`);
+      nameList.push(`@umajs/${template}`);
     }
-  } else if (isStartWithUmi) {
+  } else if (isStartWithUma) {
     // @umijs/electron
     nameList.push(`${template}-template`);
   } else {
     // electron
-    nameList.push(`@umijs/${template}-template`);
+    nameList.push(`@umajs/${template}-template`);
   }
 
   for await (const name of nameList) {

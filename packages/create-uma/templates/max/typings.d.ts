@@ -1,0 +1,1 @@
+import '@umajs/max/typings';
