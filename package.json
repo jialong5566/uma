@@ -2,7 +2,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "uma-scripts turbo build",
-    "v": "uma -v"
+    "v": "uma dev"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
