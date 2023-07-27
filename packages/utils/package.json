@@ -27,6 +27,7 @@
     }
   },
   "dependencies": {
+    "chokidar": "3.5.3",
     "pino": "^8.11.0"
   }
 }

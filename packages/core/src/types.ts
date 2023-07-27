@@ -106,3 +106,7 @@ export interface IAdd<T, U> {
     };
   }): void;
 }
+
+
+export type ChangeTypeValue = string | `${ConfigChangeType}` | Function;
+export type IOnChangeTypes = Record<string, ChangeTypeValue>;

@@ -44,9 +44,11 @@ export * from './setNoDeprecation';
 export * from './importLazy';
 export * from './isLocalDev';
 export * from './tryPaths';
+import * as chokidar from 'chokidar';
 
 
 export {
+    chokidar,
     BaseGenerator,
     getGitInfo,
     isTypeScriptFile,

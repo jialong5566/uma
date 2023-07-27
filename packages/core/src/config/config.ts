@@ -1,10 +1,13 @@
-import {Env} from "../types";
+import {Env, IOnChangeTypes} from "../types";
 import {DEFAULT_CONFIG_FILES, LOCAL_EXT, SHORT_ENV} from "../constants";
 import { join } from "path";
 import { existsSync } from "fs";
 import esbuild from "esbuild";
 import {addExt, getAbsFiles} from "./util";
-import {lodash, register} from "@umajs/utils";
+import {chokidar, lodash, register} from "@umajs/utils";
+import {WATCH_DEBOUNCE_STEP} from "father/dist/constants";
+import {diff} from "just-diff";
+import assert from "assert";
 
 
 type ISchema = Record<string, any>;
@@ -25,6 +28,57 @@ export class Config {
     this.opts = opts;
     this.mainConfigFile = Config.getMainConfigFile(this.opts);
     this.prevConfig = null;
+  }
+
+  watch(opts: {
+    schemas: ISchema;
+    onChangeTypes: IOnChangeTypes;
+    onChange: (opts: {
+      data: ReturnType<typeof Config.diffConfigs>;
+      event: string;
+      path: string;
+    }) => Promise<void>;
+  }) {
+    const watcher = chokidar.watch(
+        [
+          ...this.files,
+          ...(this.mainConfigFile
+              ? []
+              : getAbsFiles({
+                files: this.opts.defaultConfigFiles || DEFAULT_CONFIG_FILES,
+                cwd: this.opts.cwd,
+              })),
+        ],
+        {
+          ignoreInitial: true,
+          cwd: this.opts.cwd,
+        },
+    );
+    watcher.on(
+        'all',
+        lodash.debounce((event, path) => {
+          const { config: origin } = this.prevConfig;
+          const { config: updated, files } = this.getConfig({
+            schemas: opts.schemas,
+          });
+          watcher.add(files);
+          const data = Config.diffConfigs({
+            origin,
+            updated,
+            onChangeTypes: opts.onChangeTypes,
+          });
+          opts
+              .onChange({
+                data,
+                event,
+                path,
+              })
+              .catch((e) => {
+                throw e;
+              });
+        }, WATCH_DEBOUNCE_STEP),
+    );
+    return () => watcher.close();
   }
 
   static getMainConfigFile(opts: {
@@ -139,5 +193,32 @@ export class Config {
         cwd: this.opts.cwd,
       }),
     });
+  }
+
+  static diffConfigs(opts: {
+    origin: any;
+    updated: any;
+    onChangeTypes: IOnChangeTypes;
+  }) {
+    const patch = diff(opts.origin, opts.updated);
+    const changes: Record<string, string[]> = {};
+    const fns: Function[] = [];
+    for (const item of patch) {
+      const key = item.path[0];
+      const onChange = opts.onChangeTypes[key];
+      assert(onChange, `Invalid onChange config for key ${key}`);
+      if (typeof onChange === 'string') {
+        changes[onChange] ||= [];
+        changes[onChange].push(String(key));
+      } else if (typeof onChange === 'function') {
+        fns.push(onChange);
+      } else {
+        throw new Error(`Invalid onChange value for key ${key}`);
+      }
+    }
+    return {
+      changes,
+      fns,
+    };
   }
 }
